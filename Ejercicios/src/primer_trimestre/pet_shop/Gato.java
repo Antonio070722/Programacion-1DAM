@@ -22,7 +22,7 @@ public class Gato extends Mascotas{
     }
 
     public Gato(SEXO sexo, int edad, String EAN, String color, String raza, TIPO_PELO_GATO tipoPeloGato, int CHIP, String nombreMascota, String nombreDueno, String apellidoDueno, String DNI) {
-        super(sexo, edad, EAN, nombreMascota, CHIP, nombreDueno, apellidoDueno, DNI);
+        super(sexo, edad, EAN, nombreMascota, CHIP);
         this.color = color;
         this.raza = raza;
         this.tipoPeloGato = tipoPeloGato;

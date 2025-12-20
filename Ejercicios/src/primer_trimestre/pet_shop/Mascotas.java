@@ -7,25 +7,33 @@ public class Mascotas extends Animales{
     String apellidoDueno;
     String DNI;
 
+    /**
+     * Constructor de las mascotas con: sexo, edad, EAN y CHIP
+     * @param sexo
+     * @param edad
+     * @param EAN
+     * @param CHIP
+     */
     public Mascotas(SEXO sexo, int edad, String EAN, int CHIP){
         super(sexo, edad, EAN);
         this.CHIP=CHIP;
     }
 
+    /**
+     * Constructor con los datos del anterior constructor pero con la
+     * opcion de añadir el nombre de la mascota
+     * @param sexo
+     * @param edad
+     * @param EAN
+     * @param nombreMascota
+     * @param CHIP
+     */
     public Mascotas(SEXO sexo, int edad, String EAN, String nombreMascota, int CHIP){
         super(sexo, edad, EAN);
         this.nombreMascota=nombreMascota;
         this.CHIP=CHIP;
     }
 
-    public Mascotas(SEXO sexo, int edad, String EAN, String nombreMascota, int CHIP, String nombreDueno, String apellidoDueno, String DNI){
-        super(sexo, edad, EAN);
-        this.nombreMascota=nombreMascota;
-        this.CHIP=CHIP;
-        this.nombreDueno=nombreDueno;
-        this.apellidoDueno=apellidoDueno;
-        this.DNI=DNI;
-    }
 
     public int getCHIP() {
         return CHIP;
@@ -79,5 +87,17 @@ public class Mascotas extends Animales{
                 ", edad=" + edad +
                 ", EAN='" + EAN + '\'' +
                 '}';
+    }
+
+    /**
+     * Método para asignar dueño a la mascota al venderla
+     * @param nombreDueno
+     * @param apellidoDueno
+     * @param DNI
+     */
+    public void asignarDueno(String nombreDueno, String apellidoDueno, String DNI){
+        this.nombreDueno=nombreDueno;
+        this.apellidoDueno=apellidoDueno;
+        this.DNI=DNI;
     }
 }

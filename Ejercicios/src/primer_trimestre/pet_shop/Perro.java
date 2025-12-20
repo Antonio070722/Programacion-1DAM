@@ -4,11 +4,11 @@ public class Perro extends Mascotas{
     public String color;
     public String raza;
     public TIPO_PELO_PERRO tipoPeloPerro;
-    public double peligree;
+    public boolean peligree=false;
     public static final double PRECIO_SIN_PELIGREE=100;
     public static final double PRECIO_CON_PELIGREE=200;
 
-    public Perro(SEXO sexo, int edad, String EAN, String color,  String raza, TIPO_PELO_PERRO tipoPeloPerro, double pedigree, int CHIP) {
+    public Perro(SEXO sexo, int edad, String EAN, String color,  String raza, TIPO_PELO_PERRO tipoPeloPerro, boolean pedigree, int CHIP) {
         super(sexo, edad, EAN, CHIP);
         this.color = color;
         this.raza = raza;
@@ -16,7 +16,7 @@ public class Perro extends Mascotas{
         this.peligree=pedigree;
     }
 
-    public Perro(SEXO sexo, int edad, String EAN, String color,  String raza, TIPO_PELO_PERRO tipoPeloPerro, double pedigree, int CHIP, String nombreMascota) {
+    public Perro(SEXO sexo, int edad, String EAN, String color,  String raza, TIPO_PELO_PERRO tipoPeloPerro, boolean pedigree, int CHIP, String nombreMascota) {
         super(sexo, edad, EAN, nombreMascota, CHIP);
         this.color = color;
         this.raza = raza;
@@ -24,8 +24,8 @@ public class Perro extends Mascotas{
         this.peligree=pedigree;
     }
 
-    public Perro(SEXO sexo, int edad, String EAN, String color,  String raza, TIPO_PELO_PERRO tipoPeloPerro, double pedigree, int CHIP, String nombreMascota, String nombreDueno, String apellidoDueno, String DNI) {
-        super(sexo, edad, EAN, nombreMascota, CHIP, nombreDueno, apellidoDueno, DNI);
+    public Perro(SEXO sexo, int edad, String EAN, String color,  String raza, TIPO_PELO_PERRO tipoPeloPerro, boolean pedigree, int CHIP, String nombreMascota, String nombreDueno, String apellidoDueno, String DNI) {
+        super(sexo, edad, EAN, nombreMascota, CHIP);
         this.color = color;
         this.raza = raza;
         this.tipoPeloPerro = tipoPeloPerro;
@@ -56,11 +56,11 @@ public class Perro extends Mascotas{
         this.tipoPeloPerro = tipoPeloPerro;
     }
 
-    public void getPedigree(double pedigree) {
+    public void getPedigree(boolean pedigree) {
         this.peligree = pedigree;
     }
 
-    public void setPedigree(double pedigree) {
+    public void setPedigree(boolean pedigree) {
         this.peligree = pedigree;
     }
 

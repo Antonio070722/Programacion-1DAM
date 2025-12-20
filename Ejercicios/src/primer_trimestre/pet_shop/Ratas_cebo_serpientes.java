@@ -41,9 +41,11 @@ public class Ratas_cebo_serpientes extends Animales{
 
     public boolean aptoVenta(){
         if (peso<200){
+            System.out.println("La rata pesa menos de 200 gramos. No apta para venta.");
             return false;
         }
         if (tamaño<5){
+            System.out.println("La rata mide menos de 5 centímetros. No apta para venta.");
             return false;
         }
         return true;

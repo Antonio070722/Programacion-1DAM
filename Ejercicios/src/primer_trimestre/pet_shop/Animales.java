@@ -50,6 +50,29 @@ public class Animales {
                 '}';
     }
 
-
-
+public static boolean puedenReproducirse(Animales a1, Animales a2){
+    // Las ratas de cebo para serpientes no pueden reproducirse.
+    if (a1 instanceof Ratas_cebo_serpientes || a2 instanceof Ratas_cebo_serpientes){
+        System.out.println("No se pueden reproducir. Las ratas no pueden reproducirse");
+        return false;
+    }
+    // Deben ser de distinto sexo.
+    if (a1.sexo==a2.sexo){
+        System.out.println("No se pueden reproducir. Mismo sexo.");
+        return false;
+    }
+    // Deben ser de la misma especie.
+    if (a1.getClass() != a2.getClass()){
+        System.out.println("No se pueden reproducir. Diferente especie.");
+        return false;
+    }
+    // Deben haber alcanzado la madurez sexual (1 año = 365 días).
+    if (a1.edad<365 || a2.edad<365){
+        System.out.println("No se pueden reproducir. Alguno de los dos no ha alcanzado la madurez sexual.");
+        return false;
+    }
+    // Si pasan todas las comprobaciones, pueden reproducirse.
+    System.out.println("Pueden reproducirse.");
+    return true;
+    }
 }

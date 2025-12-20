@@ -9,14 +9,14 @@ public class Principal {
         usuario.put("alumno", 1111L);
         usuario.put("profesor", 2222L);
 
-        pedirdatos();
+//        pedirdatos();
 
     }
 
-    public static String pedirdatos(){
-
-
-
-    }
+//    public static String pedirdatos(){
+//
+//
+//
+//    }
 
 }
