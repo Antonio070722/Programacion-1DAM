@@ -47,6 +47,7 @@ public class Principal {
                     break;
                 case 4:
                     System.out.println("Has seleccionado 4");
+                    numTotalDeCadaAnimal();
                     break;
                 case 5:
                     System.out.println("Has seleccionado 5");
@@ -241,4 +242,28 @@ public class Principal {
         }
     }
 
+    public static void numTotalDeCadaAnimal() {
+        int perros = 0;
+        int gatos = 0;
+        int pajaros = 0;
+        int ratas = 0;
+
+        for (Animales a : listaAnimales) {
+            if (a instanceof Perro) {
+                perros++;
+            } else if (a instanceof Gato) {
+                gatos++;
+            } else if (a instanceof Pájaros) {
+                pajaros++;
+            } else if (a instanceof Ratas_cebo_serpientes) {
+                ratas++;
+            }
+            System.out.println("=== Totales por tipo ===");
+            System.out.println("Perros vendidos: " + perros);
+            System.out.println("Gatos vendidos: " + gatos);
+            System.out.println("Pájaros vendidos: " + pajaros);
+            System.out.println("Ratas vendidas: " + ratas);
+
+        }
+    }
 }
