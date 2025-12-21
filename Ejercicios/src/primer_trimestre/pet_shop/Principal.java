@@ -51,12 +51,15 @@ public class Principal {
                     break;
                 case 5:
                     System.out.println("Has seleccionado 5");
+                    mostrarDuenoPorDNI();
                     break;
                 case 6:
                     System.out.println("Has seleccionado 6");
+                    mostrarNombreYChipPorNombre();
                     break;
                 case 7:
                     System.out.println("Has seleccionado 7");
+                    caracteristicasPorEAN();
                     break;
                 case 8:
                     System.out.println("Has seleccionado 8");
@@ -265,5 +268,53 @@ public class Principal {
             System.out.println("Ratas vendidas: " + ratas);
 
         }
+    }
+
+    public static void mostrarDuenoPorDNI(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el DNI del dueño: ");
+        String dniBuscado = sc.nextLine();
+        boolean encontrado = false;
+
+        for(Animales a : listaAnimales){
+            if(a instanceof Mascotas){
+                Mascotas m = (Mascotas) a;
+                if(m.DNI != null && m.DNI.equals(dniBuscado)){
+                    System.out.println("Mascota encontra.\n Nombre:"+m.nombreMascota+"\n Tipo: "+a.getClass().getSimpleName()+"\n Chip: "+m.CHIP+"\n Dueño: "+m.nombreDueno+" "+m.apellidoDueno);
+                    encontrado = true;
+                }
+            }
+            if(!encontrado){
+                System.out.println("No se ha encontrado ningún dueño con el DNI: " + dniBuscado);
+            }
+        }
+    }
+
+    public static  void mostrarNombreYChipPorNombre(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el nombre de la mascota: ");
+        String nombreBuscado = sc.nextLine();
+        boolean encontrado = false;
+        for(Animales a : listaAnimales){
+            if(a instanceof Mascotas){
+                Mascotas m = (Mascotas) a;
+                if(m.nombreMascota != null && m.nombreMascota.equalsIgnoreCase(nombreBuscado)){
+                    System.out.println("Mascota encontrada.\n Nombre:"+m.nombreMascota+"\n Tipo: "+a.getClass().getSimpleName()+"\n Chip: "+m.CHIP);
+                    encontrado = true;
+                }
+            }
+            if(!encontrado){
+                System.out.println("No se ha encontrado ninguna mascota con el nombre: " + nombreBuscado);
+            }
+        }
+    }
+
+    public static void caracteristicasPorEAN(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el código EAN del animal: ");
+        String eanBuscado = sc.nextLine();
+        boolean encontrado = false;
+
+        for(Animales a : listaAnimales){}
     }
 }
