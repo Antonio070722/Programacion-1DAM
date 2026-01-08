@@ -27,9 +27,15 @@ public class Usuario {
     }
 
     public boolean comprobarPassword(long passwordIntroducida){
-        if(password == passwordIntroducida){
-            return true;
-        }else return false;
+//        if(password == passwordIntroducida){
+//            return true;
+//        }else return false;
+
+
+        //LO DE ARRIBA ES LO MISMO QUE LO DE ABAJO, PERO ABAJO DE FORMA RESUMIDA
+
+
+        return this.password == passwordIntroducida;
     }
 
 }
