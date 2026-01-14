@@ -1,6 +1,5 @@
 package Practica_final;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public abstract class Evento {
