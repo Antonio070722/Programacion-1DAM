@@ -11,8 +11,8 @@ public class Principal {
     static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> usuarios = new HashMap<>();
-        usuarios.put("admin", "contraseñaValida");
-        usuarios.put("alumno", "contraValida");
+        usuarios.put("admin", "contraseña!!");
+        usuarios.put("alumno", "contraseña!!");
 
         String usuario = "";
         String password = "";
@@ -61,16 +61,35 @@ public class Principal {
         Scanner sc = new Scanner(System.in);
         int op=0;
         do {
-            System.out.println("\n1.\tAñadir evento.");
-            System.out.println("2.\tBorrar evento.");
-            System.out.println("3.\tMostrar evento.");
-            System.out.println("4.\tSalir.");
+            System.out.println("\n1.\tListar todos los eventos");
+            System.out.println("2.\tListar solo eventos futuros");
+            System.out.println("3.\tAñadir evento presencial");
+            System.out.println("4.\tAñadir evento online");
+            System.out.println("5.\tBorrar evento por nombre");
+            System.out.println("6.\t(Solo admin) Crear nuevo usuario");
+            System.out.println("7.\tSalir");
             System.out.println("\nIntroduce la opcion deseada: ");
             op = sc.nextInt();
-            if (op > 4 || op < 1) {
-                System.out.println("Introduce una opción válida");
+
+            switch (op) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("Introduce una opción válida");
             }
-        }while(op!=0);
+        }while(op!=7);
 
         }
 
