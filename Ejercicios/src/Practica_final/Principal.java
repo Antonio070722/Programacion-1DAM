@@ -10,7 +10,7 @@ public class Principal {
      *
      * @param args
      */
-    static void main(String[] args) {
+    static void main(String[] args) throws PasswordException {
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> usuarios = new HashMap<>();
         ArrayList<Evento> eventos = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Principal {
 
         if (logeado){
             System.out.println("Bienvenido "+ usuario+".");
-            mostrarMenu(eventos);
+            mostrarMenu(eventos, usuarios, usuario);
         } else {
             System.out.println("Demasidos intentos fallidos.");
         }
@@ -63,7 +63,7 @@ public class Principal {
     /**
      *
      */
-    public static void mostrarMenu(ArrayList<Evento> eventos) {
+    public static void mostrarMenu(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordException {
         Scanner sc = new Scanner(System.in);
         int op=0;
         do {
@@ -91,6 +91,7 @@ public class Principal {
                     borrarEvento(eventos);
                     break;
                 case 6:
+                    crearUsuario(eventos, usuarios, usuario);
                     break;
                 case 7:
                     break;
@@ -100,6 +101,42 @@ public class Principal {
         }while(op!=7);
 
         }
+
+    private static void crearUsuario(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordException {
+        Scanner sc = new Scanner(System.in);
+        if (!usuario.equals("admin")) {
+            System.out.println("Acceso denegado: solo admin puede crear usuarios.");
+
+            mostrarMenu(eventos, usuarios, usuario);
+        } else {
+            System.out.println("Introduce el nombre del nuevo usuario");
+            String nombre=sc.nextLine();
+            System.out.println("Introduce la contraseña para el nuevo usuario");
+            String password=sc.nextLine();
+            comprobarContraseña(password);
+        }
+
+    }
+
+    private static boolean comprobarContraseña(String password) throws PasswordException {
+        if (password.length() < 8 || password.length() > 12) {
+            throw new PasswordException("La contraseña es menor a 8 caracteres o mayor a 12.");
+        }
+
+        if (!password.matches(".*[A-Za-z].*")){
+            throw new PasswordException("La contraseña debe contener al menos una letra");
+        }
+
+        if (!password.matches(".*\\d.*")){
+            throw new PasswordException("La contraseña no puede contener números");
+        }
+
+        if (!password.matches(".*[!@#$%&*].*")){
+            throw new PasswordException("La contraseña debe contener al menos uno de estos signos: !@#$%&*");
+        }
+
+        return true;
+    }
 
     private static void borrarEvento(ArrayList<Evento> eventos) {
         Scanner sc = new Scanner(System.in);
