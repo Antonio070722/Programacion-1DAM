@@ -113,7 +113,15 @@ public class Principal {
             String nombre=sc.nextLine();
             System.out.println("Introduce la contraseña para el nuevo usuario");
             String password=sc.nextLine();
-            comprobarContraseña(password);
+
+            try {
+                comprobarContraseña(password);
+                usuarios.put(usuario, password);
+                System.out.println("Usuario añadido correctamente");
+            }catch(PasswordException e){
+                System.out.println("Error:"+e.getMessage());
+                System.out.println("No se ha creado el usuario");
+            }
         }
 
     }
