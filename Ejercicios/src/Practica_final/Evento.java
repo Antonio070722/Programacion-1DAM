@@ -2,7 +2,7 @@ package Practica_final;
 
 import java.time.LocalDateTime;
 
-public abstract class Evento {
+public abstract class Evento implements  mostrarInfo {
     protected String nombre;
     protected LocalDateTime fechaHora;
 
@@ -28,12 +28,8 @@ public abstract class Evento {
     }
 
     @Override
-    public String toString() {
-        return "Evento{" +
-                "nombre='" + nombre + '\'' +
-                ", fecha=" + fechaHora +
-                '}';
-    }
+    public abstract void mostrarInfo();
+
 
     public boolean esFuturo(){
         return fechaHora.isAfter(LocalDateTime.now());
