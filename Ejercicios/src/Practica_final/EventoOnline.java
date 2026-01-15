@@ -27,9 +27,9 @@ public class EventoOnline extends Evento{
         System.out.println("\tPlataforma: " + this.plataforma);
 
         if (esFuturo()) {
-            System.out.println("Evento futuro.");
+            System.out.println("\tEvento futuro.");
         } else {
-            System.out.println("Evento pasado.");
+            System.out.println("\tEvento pasado.");
         }
 
     }

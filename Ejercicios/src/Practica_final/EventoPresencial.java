@@ -5,8 +5,9 @@ import java.time.LocalDateTime;
 public class EventoPresencial extends Evento {
     String aula;
 
-    public EventoPresencial(String nombre, LocalDateTime fechaHora) {
+    public EventoPresencial(String nombre, LocalDateTime fechaHora, String aula) {
         super(nombre, fechaHora);
+        this.aula = aula;
     }
 
     public String getAula() {
@@ -25,9 +26,9 @@ public class EventoPresencial extends Evento {
         System.out.println("\tAula: " + this.aula);
 
         if (esFuturo()) {
-            System.out.println("Evento futuro.");
+            System.out.println("\tEvento futuro.");
         } else {
-            System.out.println("Evento pasado.");
+            System.out.println("\tEvento pasado.");
         }
     }
 }

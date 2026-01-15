@@ -30,7 +30,6 @@ public abstract class Evento implements  mostrarInfo {
     @Override
     public abstract void mostrarInfo();
 
-
     public boolean esFuturo(){
         return fechaHora.isAfter(LocalDateTime.now());
     }

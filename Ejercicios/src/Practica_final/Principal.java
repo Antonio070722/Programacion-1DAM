@@ -1,5 +1,7 @@
 package Practica_final;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ public class Principal {
     static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> usuarios = new HashMap<>();
+        ArrayList<Evento> eventos = new ArrayList<>();
         usuarios.put("admin", "contraseña!!");
         usuarios.put("alumno", "contraseña!!");
 
@@ -36,7 +39,7 @@ public class Principal {
 
         if (logeado){
             System.out.println("Bienvenido "+ usuario+".");
-            mostrarMenu();
+            mostrarMenu(eventos);
         } else {
             System.out.println("Demasidos intentos fallidos.");
         }
@@ -57,7 +60,10 @@ public class Principal {
         return usuarios.containsKey(usuario) && usuarios.get(usuario).equals(password);
     }
 
-    public static void mostrarMenu() {
+    /**
+     *
+     */
+    public static void mostrarMenu(ArrayList<Evento> eventos) {
         Scanner sc = new Scanner(System.in);
         int op=0;
         do {
@@ -73,14 +79,16 @@ public class Principal {
 
             switch (op) {
                 case 1:
+                    listarEventos(eventos);
                     break;
                 case 2:
+                    listarEventosFuturos(eventos);
                     break;
-                case 3:
-                    break;
-                case 4:
+                case 3, 4:
+                    anadirEvento(eventos);
                     break;
                 case 5:
+                    borrarEvento(eventos);
                     break;
                 case 6:
                     break;
@@ -92,5 +100,147 @@ public class Principal {
         }while(op!=7);
 
         }
+
+    private static void borrarEvento(ArrayList<Evento> eventos) {
+        Scanner sc = new Scanner(System.in);
+        if (eventos.isEmpty()){
+            System.out.println("No hay eventos creados.");
+        } else {
+            System.out.println("Lista de eventos: ");
+            for (Evento e : eventos) {
+                e.mostrarInfo();
+            }
+        }
+        System.out.println("Introduce el nombre del evento a borrar: ");
+        String borrar = sc.nextLine();
+        boolean encontrado=false;
+        for (Evento e : eventos) {
+            if (e.getNombre().equals(borrar)) {
+                eventos.remove(e);
+                System.out.println("\nEvento "+borrar+" borrado.");
+                encontrado=true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encuentra ningún evento con ese nombre");
+        }
+    }
+
+    private static void listarEventosFuturos(ArrayList<Evento> eventos) {
+        if (eventos.isEmpty()) {
+            System.out.println("No se han encontrado eventos.");
+        }else {
+            for (Evento a : eventos) {
+                if (a.esFuturo()) {
+                    a.mostrarInfo();
+                }
+            }
+        }
+    }
+
+    private static void listarEventos(ArrayList<Evento> eventos) {
+        if (eventos.isEmpty()) {
+            System.out.println("No se han encontrado eventos.");
+        }else {
+            for (Evento a : eventos) {
+                a.mostrarInfo();
+                System.out.println(a);
+            }
+        }
+    }
+
+    private static void anadirEvento(ArrayList<Evento> eventos) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce el tipo de evento (Presencial u Online): ");
+        String tipo = sc.nextLine();
+        while (!tipo.equalsIgnoreCase("Presencial") && !tipo.equalsIgnoreCase("Online")) {
+            System.out.println("Introduce un tipo de evento correcto (Presencial u Online)");
+            tipo = sc.nextLine();
+        }
+        if (tipo.equalsIgnoreCase("Presencial")){
+            System.out.println("Introduce el nombre del evento: ");
+            String nombre = sc.nextLine();
+
+            //Para pedir la fecha y hora del evento, he ido pidiendo poco a poco cada uno,
+            //dia, mes, año y hora e implementandolos al final en una variable LocalDataTime
+            System.out.println("Introduce la fecha del evento, año (Ej: 2024): ");
+            int anio = sc.nextInt();
+            System.out.println("Introduce el mes (1-12): ");
+            int mes = sc.nextInt();
+            while (mes > 12 || mes < 1) {
+                System.out.println("Introduce un mes válido (1-12): ");
+                mes = sc.nextInt();
+            }
+            System.out.println("Introduce el día");
+            int dia = sc.nextInt();
+            while(dia > 31 || dia < 1) {
+                System.out.println("Introduce un día válido (1-31)");
+                dia = sc.nextInt();
+            }
+            System.out.println("Introduce la hora (0-23)");
+            int hora = sc.nextInt();
+            while (hora < 0 || hora > 23) {
+                System.out.println("Introduce una hora válida (0-23): ");
+                hora = sc.nextInt();
+            }
+            System.out.println("Introduce los minutos (0-60): ");
+            int mins = sc.nextInt();
+            while(mins > 60 || mins < 0){
+                System.out.println("Introduce minutos válidos (0-60): ");
+                mins = sc.nextInt();
+            }
+            //Para juntar la fecha y la hora en una variable LocalDateTime:
+            LocalDateTime fechaHora = LocalDateTime.of(anio, mes, dia, hora, mins);
+
+            System.out.println("Introduce el aula del evento: ");
+            sc.nextLine();
+            String aula = sc.nextLine();
+
+            EventoPresencial eventoPresencial = new EventoPresencial(nombre, fechaHora, aula);
+            eventos.add(eventoPresencial);
+
+            System.out.println("Evento presencial creado correctamente!!");
+        } else if (tipo.equalsIgnoreCase("Online")) {
+
+            System.out.println("Introduce el nombre del evento: ");
+            String nombre = sc.nextLine();
+
+            System.out.println("Introduce la fecha del evento, año (Ej: 2024): ");
+            int anio = sc.nextInt();
+            System.out.println("Introduce el mes (1-12): ");
+            int mes = sc.nextInt();
+
+            while (mes > 12 || mes < 1) {
+                System.out.println("Introduce un mes válido (1-12): ");
+                mes = sc.nextInt();
+            }
+            System.out.println("Introduce el día");
+            int dia = sc.nextInt();
+            System.out.println("Introduce la hora (0-23)");
+            int hora = sc.nextInt();
+            while (hora < 0 || hora > 23) {
+                System.out.println("Introduce una hora válida (0-23): ");
+                hora = sc.nextInt();
+            }
+            System.out.println("Introduce los minutos (0-60): ");
+            int mins = sc.nextInt();
+            while(mins > 60 || mins < 0){
+                System.out.println("Introduce minutos válidos (0-60): ");
+                mins = sc.nextInt();
+            }
+
+            LocalDateTime fechaHora = LocalDateTime.of(anio, mes, dia, hora, mins);
+
+            System.out.println("Introduce la plataforma del evento: ");
+            String plataforma = sc.nextLine();
+
+            EventoOnline eventoOnline = new EventoOnline(nombre, fechaHora, plataforma);
+
+            eventos.add(eventoOnline);
+
+            System.out.println("Evento online creado correctamente!!");
+        }
+    }
 
 }
