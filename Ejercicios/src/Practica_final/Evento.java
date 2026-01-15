@@ -2,6 +2,10 @@ package Practica_final;
 
 import java.time.LocalDateTime;
 
+/**
+ * Clase abstracta padre de EventoOnline y EventoPresencial
+ * Aquí ya está implementada la interfaz mostrarInfo de forma que no haya que hacerlo en las hijas
+ */
 public abstract class Evento implements  mostrarInfo {
     protected String nombre;
     protected LocalDateTime fechaHora;
@@ -27,6 +31,9 @@ public abstract class Evento implements  mostrarInfo {
         this.fechaHora = fechaHora;
     }
 
+    /**
+     * Método vacío mostrarInfo y un método boolean que devuelva true si el evento es opsterior a la fecha y hora actual
+     */
     @Override
     public abstract void mostrarInfo();
 

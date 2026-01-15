@@ -4,8 +4,15 @@ import java.time.LocalDateTime;
 
 public class EventoOnline extends Evento{
 
-    String plataforma;
+    String plataforma; //Atributo propio de la clase EventoOnline
 
+    /**
+     * Constructor para los objetos de tipo eventoOnline, teniendo que pasarle el nombre del evento, fecha y hora en
+     * tipo LocalDataTime y la plataforma del evento.
+     * @param nombre
+     * @param fechaHora
+     * @param plataforma
+     */
     public EventoOnline(String nombre, LocalDateTime fechaHora, String plataforma) {
         super(nombre, fechaHora);
         this.plataforma = plataforma;
@@ -19,6 +26,9 @@ public class EventoOnline extends Evento{
         this.plataforma = plataforma;
     }
 
+    /**
+     * Método de la interfaz mostrarInfo sobreescrito para mostrar la información del evento junto a si es futuro o no
+     */
     @Override
     public void mostrarInfo() {
         System.out.println("--Evento online--");
