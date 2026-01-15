@@ -211,7 +211,9 @@ public class Principal {
     }
 
     /**
-     * Método para mostrar los eventos que tienen asignada una fecha posterior a la actual
+     * Método para mostrar los eventos que tienen asignada una fecha posterior a la actual, en el caso de que no haya
+     * ningún evento creado, muestra el mensaje 'No se han encontrado eventos', en caso contrario, con un bucle
+     * for-each, se recorren todos los eventos en busca de los que el método esFuturo devuelve true y se muestran.
      * @param eventos
      */
     private static void listarEventosFuturos(ArrayList<Evento> eventos) {
@@ -226,6 +228,12 @@ public class Principal {
         }
     }
 
+    /**
+     * Método para listar todos los eventos, si nos hay eventos, se muestra el mensaje 'No se han encontrado eventos',
+     * y si hay, mediante un bucle for-each que recorre todos los eventos, ejecutando el método mostrarInfo, que es
+     * un @Override de la interfaz mostrarInfo.java
+     * @param eventos
+     */
     private static void listarEventos(ArrayList<Evento> eventos) {
         if (eventos.isEmpty()) {
             System.out.println("No se han encontrado eventos.");
@@ -237,6 +245,18 @@ public class Principal {
         }
     }
 
+    /**
+     * Método para añadir un nuevo evento, lo primero que hace es pedir al usuario un tipo de evento, Presencial y online
+     * en caso de que no introduzca ninguno de estos, sigue preguntando hasta que se introduzca alguno de los dos,
+     * tras poner uno válido, se hace que, si es Presencial, que pida, el nombre del evento, la fecha y hora desglosada,
+     * es decir pide primero el año, despues el mes, dia, hora y minuto, incluyendo validaciones para que se introduzcan
+     * valores válidos (Ej: que no puedas poner un número de mes menor de 1 ni mayor de 12), una vez son introducidos
+     * todos, se junta todo en un LocalDateTime, a continuación, pide el nombre o número de aula y crea un objeto de
+     * clase eventoPresencial y lo añade a la Arraylist; en el caso de introducir online, el proceso es exactamente el
+     * mismo con la diferencia de que no pide un aula, sino la plataforma del evento online y creando un objeto de
+     * clase eventoOnline en vez de presencial.
+     * @param eventos
+     */
     private static void anadirEvento(ArrayList<Evento> eventos) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduce el tipo de evento (Presencial u Online): ");
