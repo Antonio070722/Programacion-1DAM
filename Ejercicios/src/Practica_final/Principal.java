@@ -7,7 +7,11 @@ import java.util.Scanner;
 
 public class Principal {
     /**
-     *
+     * Main, en este he declarado el HashMap que almacena los nombres de usuarios y contraseñas, la ArrayList para
+     * almacenar eventos y la validación de usuario y contraseña mediante el uso del método loginCorrecto y un do while,
+     * de forma que se pedirá todo el rato un usuario y contraseña válido hasta 3 intentos, si no se introduce
+     * un nombre de usuario y contraseña válido, cuando se acabe el número de intentos, el programa finaliza con
+     * el mensaje 'Demasiados intentos fallidos'.
      * @param args
      */
     static void main(String[] args) throws PasswordException {
@@ -61,7 +65,9 @@ public class Principal {
     }
 
     /**
-     *
+     * Método para mostrar el menú del programa, solo se llega aquí una vez introducidas unas credeciales correctas;
+     * aquí tienes que introducir un número del uno al siete correspondiente a la acción que se desea realizar,
+     * el siete es el número que ejecuta la salida del programa.
      */
     public static void mostrarMenu(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordException {
         Scanner sc = new Scanner(System.in);
@@ -102,6 +108,21 @@ public class Principal {
 
         }
 
+    /**
+     * Método que se ejecuta al poner el número 6 en el menú siendo admin, en caso de no serlo, se muestra el mensaje
+     * 'Acceso denegado: solo admin puede crear usuarios', si el usuario logueado es admin, tiene que introducir
+     * el nombre de usuario lo primero, después tiene que introducir una contraseña que es validada en un método llamado
+     * comprobarContraseña, el método está dentro de un 'try', después del método (si devuelve true) se intenta
+     * añadir el usuario y contraseña al hashmap que los almacena, y si esto es posible, muestra el
+     * mensaje: Usuario añadido correctamente. En el caso de que alguno de esto falle, ya sea porque la contraseña
+     * no cumple los requisitos (método comprobarContraseña devuelve false) o porque por algún motivo ha fallado
+     * al añadir el nuevo usaurio al HashMap, pasa a 'catch' en el que muestra error, junto al mensaje de error generado
+     * y el texto:  No se ha creado el usuario.
+      * @param eventos
+     * @param usuarios
+     * @param usuario
+     * @throws PasswordException
+     */
     private static void crearUsuario(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordException {
         Scanner sc = new Scanner(System.in);
         if (!usuario.equals("admin")) {
@@ -126,6 +147,12 @@ public class Principal {
 
     }
 
+    /**
+     * Este es el método que verifica que la contraseña que ha introducido el admin para el nuevo usuario
+     * @param password
+     * @return
+     * @throws PasswordException
+     */
     private static boolean comprobarContraseña(String password) throws PasswordException {
         if (password.length() < 8 || password.length() > 12) {
             throw new PasswordException("La contraseña es menor a 8 caracteres o mayor a 12.");
@@ -135,7 +162,7 @@ public class Principal {
             throw new PasswordException("La contraseña debe contener al menos una letra");
         }
 
-        if (!password.matches(".*\\d.*")){
+        if (password.matches(".*\\d.*")){
             throw new PasswordException("La contraseña no puede contener números");
         }
 
