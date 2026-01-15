@@ -148,7 +148,11 @@ public class Principal {
     }
 
     /**
-     * Este es el método que verifica que la contraseña que ha introducido el admin para el nuevo usuario
+     * Este es el método que verifica que la contraseña que ha introducido el admin para el nuevo usuario cumpla con
+     * los requisitos siguientes: longitud entre 8 y 12 caracteres; al menos una letra; ningún número; al menos
+     * uno de estos signos: !@#$%&* Si no cumple alguno de estos requisitos lanza un PasswordException
+     * con el mensaje correspondiente, devolviendo false al método que lo llamó, en caso contrario, como cumple todos
+     * termina devolviendo true.
      * @param password
      * @return
      * @throws PasswordException
@@ -173,6 +177,13 @@ public class Principal {
         return true;
     }
 
+    /**
+     * Método para borrar un evento, primero comprueba que hay eventos, si hay, muestra la lista de eventos disponibles
+     * y pide el nombre de el evento que se desea borrar, este nombre lo comprueba con todos los eventos que hay,
+     * si un nombre de evento coincide con el nombre de un evento, lo borra y muestra el mensaje 'Evento [nombre_evento]
+     * borrado'.
+     * @param eventos
+     */
     private static void borrarEvento(ArrayList<Evento> eventos) {
         Scanner sc = new Scanner(System.in);
         if (eventos.isEmpty()){
@@ -199,6 +210,10 @@ public class Principal {
         }
     }
 
+    /**
+     * Método para mostrar los eventos que tienen asignada una fecha posterior a la actual
+     * @param eventos
+     */
     private static void listarEventosFuturos(ArrayList<Evento> eventos) {
         if (eventos.isEmpty()) {
             System.out.println("No se han encontrado eventos.");
