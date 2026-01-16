@@ -32,7 +32,7 @@ public abstract class Evento implements  mostrarInfo {
     }
 
     /**
-     * Método vacío mostrarInfo y un método boolean que devuelva true si el evento es opsterior a la fecha y hora actual
+     * Método vacío mostrarInfo y un método boolean que devuelva true si el evento es opsterior a la fecha y hora actual.
      */
     @Override
     public abstract void mostrarInfo();
