@@ -2,6 +2,9 @@ package Practica_final;
 
 import java.time.LocalDateTime;
 
+/**
+ * Clase para crear eventos presenciales, hija de la clase Evento y con atributo propio 'aula'
+ */
 public class EventoPresencial extends Evento {
     String aula;
     //Atributo propio de la clase EventoPresencial

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Clase Principal, aquí, está el menú completo y los metodos correspondientes a cada opción de este, incluidos métodos
+ * adicionales para funcionalidades necesarias como los métodos loginCorrecto o comprobarContraseña.
+ */
 public class Principal {
     /**
      * Main, en este he declarado el HashMap que almacena los nombres de usuarios y contraseñas, la ArrayList para
@@ -14,7 +18,7 @@ public class Principal {
      * el mensaje 'Demasiados intentos fallidos'.
      * @param args
      */
-    static void main(String[] args) throws PasswordException {
+    static void main(String[] args) throws PasswordDebilException {
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> usuarios = new HashMap<>();
         ArrayList<Evento> eventos = new ArrayList<>();
@@ -69,7 +73,7 @@ public class Principal {
      * aquí tienes que introducir un número del uno al siete correspondiente a la acción que se desea realizar,
      * el siete es el número que ejecuta la salida del programa.
      */
-    public static void mostrarMenu(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordException {
+    public static void mostrarMenu(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordDebilException {
         Scanner sc = new Scanner(System.in);
         int op=0;
         do {
@@ -121,9 +125,9 @@ public class Principal {
       * @param eventos
      * @param usuarios
      * @param usuario
-     * @throws PasswordException
+     * @throws PasswordDebilException
      */
-    private static void crearUsuario(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordException {
+    private static void crearUsuario(ArrayList<Evento> eventos, HashMap<String, String> usuarios, String usuario) throws PasswordDebilException {
         Scanner sc = new Scanner(System.in);
         if (!usuario.equals("admin")) {
             System.out.println("Acceso denegado: solo admin puede crear usuarios.");
@@ -139,7 +143,7 @@ public class Principal {
                 comprobarContraseña(password);
                 usuarios.put(usuario, password);
                 System.out.println("Usuario añadido correctamente");
-            }catch(PasswordException e){
+            }catch(PasswordDebilException e){
                 System.out.println("Error:"+e.getMessage());
                 System.out.println("No se ha creado el usuario");
             }
@@ -155,23 +159,23 @@ public class Principal {
      * termina devolviendo true.
      * @param password
      * @return
-     * @throws PasswordException
+     * @throws PasswordDebilException
      */
-    private static boolean comprobarContraseña(String password) throws PasswordException {
+    private static boolean comprobarContraseña(String password) throws PasswordDebilException {
         if (password.length() < 8 || password.length() > 12) {
-            throw new PasswordException("La contraseña es menor a 8 caracteres o mayor a 12.");
+            throw new PasswordDebilException("La contraseña es menor a 8 caracteres o mayor a 12.");
         }
 
         if (!password.matches(".*[A-Za-z].*")){
-            throw new PasswordException("La contraseña debe contener al menos una letra");
+            throw new PasswordDebilException("La contraseña debe contener al menos una letra");
         }
 
         if (password.matches(".*\\d.*")){
-            throw new PasswordException("La contraseña no puede contener números");
+            throw new PasswordDebilException("La contraseña no puede contener números");
         }
 
         if (!password.matches(".*[!@#$%&*].*")){
-            throw new PasswordException("La contraseña debe contener al menos uno de estos signos: !@#$%&*");
+            throw new PasswordDebilException("La contraseña debe contener al menos uno de estos signos: !@#$%&*");
         }
 
         return true;

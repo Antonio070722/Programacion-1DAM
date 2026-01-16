@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * Clase abstracta padre de EventoOnline y EventoPresencial
- * Aquí ya está implementada la interfaz mostrarInfo de forma que no haya que hacerlo en las hijas
+ * Aquí ya está implementada la interfaz mostrarInfo de forma que no haya que hacerlo en las hijas.
  */
 public abstract class Evento implements  mostrarInfo {
     protected String nombre;

@@ -2,6 +2,9 @@ package Practica_final;
 
 import java.time.LocalDateTime;
 
+/**
+ * Clase para crear eventos online, es hija de Evento e incluye un atributo propio 'plataforma'.
+ */
 public class EventoOnline extends Evento{
 
     String plataforma; //Atributo propio de la clase EventoOnline
