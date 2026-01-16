@@ -197,21 +197,22 @@ public class Principal {
             for (Evento e : eventos) {
                 e.mostrarInfo();
             }
-        }
-        System.out.println("Introduce el nombre del evento a borrar: ");
-        String borrar = sc.nextLine();
-        boolean encontrado=false;
-        for (Evento e : eventos) {
-            if (e.getNombre().equals(borrar)) {
-                eventos.remove(e);
-                System.out.println("\nEvento "+borrar+" borrado.");
-                encontrado=true;
-                break;
+            System.out.println("Introduce el nombre del evento a borrar: ");
+            String borrar = sc.nextLine();
+            boolean encontrado=false;
+            for (Evento e : eventos) {
+                if (e.getNombre().equals(borrar)) {
+                    eventos.remove(e);
+                    System.out.println("\nEvento "+borrar+" borrado.");
+                    encontrado=true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                System.out.println("No se encuentra ningún evento con ese nombre");
             }
         }
-        if (!encontrado) {
-            System.out.println("No se encuentra ningún evento con ese nombre");
-        }
+
     }
 
     /**

@@ -45,4 +45,9 @@ public class EventoPresencial extends Evento {
             System.out.println("\tEvento pasado.");
         }
     }
+
+    @Override
+    public String toString() {
+        return " ";
+    }
 }

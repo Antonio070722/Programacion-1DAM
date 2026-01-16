@@ -46,4 +46,9 @@ public class EventoOnline extends Evento{
         }
 
     }
+
+    @Override
+    public String toString() {
+        return " ";
+    }
 }
