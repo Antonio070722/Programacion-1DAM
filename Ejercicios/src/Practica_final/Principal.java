@@ -167,17 +167,28 @@ public class Principal {
             throw new PasswordDebilException("La contraseña es menor a 8 caracteres o mayor a 12.");
         }
 
-        //Si la contraseña no tiene alguna letra ya sea mayuscula o minuscula devuelve PasswordDebilException
+        /**
+         *Si la contraseña no tiene alguna letra ya sea mayuscula o minuscula devuelve PasswordDebilException
+         *En la expresión regular, el '.' significa cualquier caracter y el '*' significa cero o mas veces,
+         * los corchetes significa cualquier caracter que esté dentro, que en este caso es A-Za-z, que significa
+         * cualquier letra ya sea mayuscula o minúscula
+         */
         if (!password.matches(".*[A-Za-z].*")){
             throw new PasswordDebilException("La contraseña debe contener al menos una letra");
         }
 
-        //Si la contraseña contiene algún número también devuelve un PasswordDebilException
+        /**
+         * Esta expresión regular significa, cualquier cadena de al menos un digito en cualquier posición, si esto
+         * se cumple manda un PasswordDebilException con el mensaje 'La contraseña no puede contener números'
+         */
         if (password.matches(".*\\d.*")){
             throw new PasswordDebilException("La contraseña no puede contener números");
         }
 
-        //Y si la contraseña no tiene como mínimo un signo de los contenidos en los corchetes tamién devuelve PasswordDebilException
+        /**
+         * Esta expresión regular es silimar a la de las letras, con la diferencia de que es con signos, debe contener
+         * al menos un signo de los comprendidos en el corchete y sino devuelve un PasswordDebilException
+         */
         if (!password.matches(".*[!@#$%&*].*")){
             throw new PasswordDebilException("La contraseña debe contener al menos uno de estos signos: !@#$%&*");
         }
