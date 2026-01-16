@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class Principal {
     /**
      * Main, en este he declarado el HashMap que almacena los nombres de usuarios y contraseñas, la ArrayList para
-     * almacenar eventos y la validación de usuario y contraseña mediante el uso del método loginCorrecto y un do while,
-     * de forma que se pedirá todo el rato un usuario y contraseña válido hasta 3 intentos, si no se introduce
+     * almacenar eventos, la validación de usuario y contraseña mediante el uso del método loginCorrecto, también
+     * un bucle do while, de forma que se pedirá todo el rato un usuario y contraseña válido hasta 3 intentos, si no se introduce
      * un nombre de usuario y contraseña válido, cuando se acabe el número de intentos, el programa finaliza con
      * el mensaje 'Demasiados intentos fallidos'.
      * @param args
@@ -120,8 +120,8 @@ public class Principal {
      * añadir el usuario y contraseña al hashmap que los almacena, y si esto es posible, muestra el
      * mensaje: Usuario añadido correctamente. En el caso de que alguno de esto falle, ya sea porque la contraseña
      * no cumple los requisitos (método comprobarContraseña devuelve false) o porque por algún motivo ha fallado
-     * al añadir el nuevo usaurio al HashMap, pasa a 'catch' en el que muestra error, junto al mensaje de error generado
-     * y el texto:  No se ha creado el usuario.
+     * al añadir el nuevo usuario al HashMap, pasa a 'catch' en el que muestra error, junto al mensaje de error generado
+     * y el mensaje:  No se ha creado el usuario.
       * @param eventos
      * @param usuarios
      * @param usuario
@@ -162,18 +162,22 @@ public class Principal {
      * @throws PasswordDebilException
      */
     private static boolean comprobarContraseña(String password) throws PasswordDebilException {
+        //Si la longitud es menor a 8 o mayor a 12 devuelve un PasswordDebilException
         if (password.length() < 8 || password.length() > 12) {
             throw new PasswordDebilException("La contraseña es menor a 8 caracteres o mayor a 12.");
         }
 
+        //Si la contraseña no tiene alguna letra ya sea mayuscula o minuscula devuelve PasswordDebilException
         if (!password.matches(".*[A-Za-z].*")){
             throw new PasswordDebilException("La contraseña debe contener al menos una letra");
         }
 
+        //Si la contraseña contiene algún número también devuelve un PasswordDebilException
         if (password.matches(".*\\d.*")){
             throw new PasswordDebilException("La contraseña no puede contener números");
         }
 
+        //Y si la contraseña no tiene como mínimo un signo de los contenidos en los corchetes tamién devuelve PasswordDebilException
         if (!password.matches(".*[!@#$%&*].*")){
             throw new PasswordDebilException("La contraseña debe contener al menos uno de estos signos: !@#$%&*");
         }
@@ -234,7 +238,7 @@ public class Principal {
     }
 
     /**
-     * Método para listar todos los eventos, si nos hay eventos, se muestra el mensaje 'No se han encontrado eventos',
+     * Método para listar todos los eventos, si no hay eventos, se muestra el mensaje 'No se han encontrado eventos',
      * y si hay, mediante un bucle for-each que recorre todos los eventos, ejecutando el método mostrarInfo, que es
      * un @Override de la interfaz mostrarInfo.java
      * @param eventos
@@ -251,10 +255,10 @@ public class Principal {
     }
 
     /**
-     * Método para añadir un nuevo evento, lo primero que hace es pedir al usuario un tipo de evento, Presencial y online
+     * Método para añadir un nuevo evento, lo primero que hace es pedir al usuario un tipo de evento, Presencial u online,
      * en caso de que no introduzca ninguno de estos, sigue preguntando hasta que se introduzca alguno de los dos,
      * tras poner uno válido, se hace que, si es Presencial, que pida, el nombre del evento, la fecha y hora desglosada,
-     * es decir pide primero el año, despues el mes, dia, hora y minuto, incluyendo validaciones para que se introduzcan
+     * es decir pide primero el año, despues el mes, dia, hora y minutos, incluyendo validaciones para que se introduzcan
      * valores válidos (Ej: que no puedas poner un número de mes menor de 1 ni mayor de 12), una vez son introducidos
      * todos, se junta todo en un LocalDateTime, a continuación, pide el nombre o número de aula y crea un objeto de
      * clase eventoPresencial y lo añade a la Arraylist; en el caso de introducir online, el proceso es exactamente el
